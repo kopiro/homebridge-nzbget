@@ -17,7 +17,7 @@ export class NZBGetPlatformAccessory {
   ) {
     this.config = {
       // Value is 0-100, assuming a connection of 100mbps, the value is in KPBS, so for 100 we want 100MB/S -> 100000KB/S,
-      rateMultiplier: 100_000,
+      rateMultiplier: 10_000,
       ..._config,
     };
 
@@ -126,7 +126,9 @@ export class NZBGetPlatformAccessory {
       .onGet(() =>
         this.ng
           .status()
-          .then((status) => status.DownloadRate / this.config.rateMultiplier)
+          .then((status) =>
+            Math.floor(status.DownloadRate / this.config.rateMultiplier)
+          )
       );
 
     // Scan
