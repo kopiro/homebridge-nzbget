@@ -16,7 +16,6 @@ export class NZBGetPlatformAccessory {
     private readonly _config: NZBConfig
   ) {
     this.config = {
-      // Value is 0-100, assuming a connection of 100mbps, the value is in KPBS, so for 100 we want 100MB/S -> (100 * 100)KB/S,
       rateMultiplier: 1_000,
       ..._config,
     };
