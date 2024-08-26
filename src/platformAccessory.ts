@@ -57,7 +57,6 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadPaused ? false : true))
       );
-    this.accessory.addService(Download);
 
     // Post Processing
 
@@ -84,7 +83,6 @@ export class NZBGetPlatformAccessory {
       .onGet(() =>
         this.ng.status().then((status) => (status.PostPaused ? false : true))
       );
-    this.accessory.addService(PostProcessing);
 
     // Download Rate
     const DownloadRate =
@@ -117,7 +115,6 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => status.DownloadRate / this.config.rateMultiplier)
       );
-    this.accessory.addService(DownloadRate);
 
     // Scan
     const Scan =
@@ -135,6 +132,5 @@ export class NZBGetPlatformAccessory {
       .onGet(() =>
         this.ng.status().then((status) => (status.ScanPaused ? false : true))
       );
-    this.accessory.addService(Scan);
   }
 }
