@@ -3,17 +3,24 @@
   "displayName": "Homebridge NZBGet",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
-  "description": "A short description about what your plugin does.",
-  "author": "Your Name",
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/USERNAME/GITHUB_PROJECT_NAME#readme",
+  "description": "Simple NZBGET interface for Homebridge",
+  "author": {
+    "name": "Flavio De Stefano",
+    "email": "destefano.flavio@gmail.com",
+    "url": "https://www.kopiro.me"
+  },
+  "funding": {
+    "type": "paypal",
+    "url": "https://www.paypal.me/kopiro"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/kopiro/homebridge-nzbget#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME.git"
+    "url": "https://github.com/kopiro/homebridge-nzbget.git"
   },
   "bugs": {
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME/issues"
+    "url": "https://github.com/kopiro/homebridge-nzbget/issues"
   },
   "keywords": [
     "homebridge-plugin"
@@ -39,10 +46,10 @@
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.0.1"
+    "typescript-eslint": "^8.0.1",
+    "homebridge-config-ui-x": "^4.57.1"
   },
   "dependencies": {
-    "@jc21/nzbget-jsonrpc-api": "^1.0.0",
-    "homebridge-config-ui-x": "^4.57.1"
+    "@jc21/nzbget-jsonrpc-api": "^1.0.0"
   }
 }
