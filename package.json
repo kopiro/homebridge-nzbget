@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-plugin-name",
-  "displayName": "Plugin Name",
+  "name": "homebridge-nzbget",
+  "displayName": "Homebridge NZBGet",
   "type": "module",
   "version": "1.0.0",
   "private": true,
@@ -40,5 +40,9 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1"
+  },
+  "dependencies": {
+    "@jc21/nzbget-jsonrpc-api": "^1.0.0",
+    "homebridge-config-ui-x": "^4.57.1"
   }
 }

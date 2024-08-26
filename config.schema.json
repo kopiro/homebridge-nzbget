@@ -1,15 +1,61 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "nzbget",
   "pluginType": "platform",
   "singular": true,
+  "headerDisplay": "Homebridge plugin for NZBGET",
+  "footerDisplay": null,
+  "form": null,
+  "display": null,
   "schema": {
-    "type": "object",
-    "properties": {
-      "name": {
-        "title": "Name",
-        "type": "string",
-        "required": true,
-        "default": "Example Dynamic Platform"
+    "instances": {
+      "type": "array",
+      "items": {
+        "title": "Instance",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "required": true,
+            "description": "Set the camera name for display in the Home app"
+          },
+          "host": {
+            "title": "Host",
+            "type": "string",
+            "required": true,
+            "description": "Set the instance IP address"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer",
+            "required": true,
+            "description": "Set the instance port"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string",
+            "required": true,
+            "description": "HTTP or HTTPS"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string",
+            "required": true,
+            "description": "Set the instance username"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string",
+            "required": true,
+            "description": "Set the instance password"
+          },
+          "rateMultiplier": {
+            "title": "Rate Multiplier",
+            "type": "number",
+            "required": true,
+            "description": "Set the rate multiplier for the DownloadRate"
+          }  
+        }
       }
     }
   }
