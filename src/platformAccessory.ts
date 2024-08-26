@@ -40,7 +40,7 @@ export class NZBGetPlatformAccessory {
       "Download",
       "download"
     );
-
+    Download.setCharacteristic(this.platform.Characteristic.Name, "Download");
     Download.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
@@ -54,7 +54,6 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadPaused ? false : true))
       );
-
     this.accessory.addService(Download);
 
     // Post Processing
@@ -63,7 +62,10 @@ export class NZBGetPlatformAccessory {
       "Post Processing",
       "post_processing"
     );
-
+    PostProcessing.setCharacteristic(
+      this.platform.Characteristic.Name,
+      "Post Processing"
+    );
     PostProcessing.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
@@ -75,16 +77,17 @@ export class NZBGetPlatformAccessory {
       .onGet(() =>
         this.ng.status().then((status) => (status.PostPaused ? false : true))
       );
-
     this.accessory.addService(PostProcessing);
 
     // Download Rate
-
     const DownloadRate = new this.platform.api.hap.Service.Lightbulb(
       "Download Rate",
       "download_rate"
     );
-
+    DownloadRate.setCharacteristic(
+      this.platform.Characteristic.Name,
+      "Download Rate"
+    );
     DownloadRate.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         this.ng.rate(value ? 100 : 0);
@@ -94,7 +97,6 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadRate === 0 ? false : true));
       });
-
     DownloadRate.getCharacteristic(this.platform.Characteristic.Brightness)
       .onSet((value: CharacteristicValue) => {
         if (typeof value !== "number") throw new Error();
@@ -105,13 +107,11 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => status.DownloadRate / this.config.rateMultiplier)
       );
-
     this.accessory.addService(DownloadRate);
 
     // Scan
-
     const Scan = new this.platform.api.hap.Service.Switch("Scan", "scan");
-
+    Scan.setCharacteristic(this.platform.Characteristic.Name, "Scan");
     Scan.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
@@ -123,7 +123,6 @@ export class NZBGetPlatformAccessory {
       .onGet(() =>
         this.ng.status().then((status) => (status.ScanPaused ? false : true))
       );
-
     this.accessory.addService(Scan);
   }
 }
