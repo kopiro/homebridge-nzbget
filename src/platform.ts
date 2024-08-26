@@ -2,7 +2,6 @@ import type {
   API,
   Characteristic,
   DynamicPlatformPlugin,
-  IndependentPlatformPlugin,
   Logging,
   PlatformAccessory,
   PlatformConfig,
