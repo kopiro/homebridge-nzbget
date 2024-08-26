@@ -107,5 +107,23 @@ export class NZBGetPlatformAccessory {
       );
 
     this.accessory.addService(DownloadRate);
+
+    // Scan
+
+    const Scan = new this.platform.api.hap.Service.Switch("Scan", "scan");
+
+    Scan.getCharacteristic(this.platform.Characteristic.On)
+      .onSet((value: CharacteristicValue) => {
+        if (value) {
+          this.ng.resumescan();
+        } else {
+          this.ng.pausescan();
+        }
+      })
+      .onGet(() =>
+        this.ng.status().then((status) => (status.ScanPaused ? false : true))
+      );
+
+    this.accessory.addService(Scan);
   }
 }
