@@ -123,11 +123,11 @@ export class NZBGetPlatformAccessory {
         this.ng.rate(Math.floor(value * this.config.rateMultiplier));
       })
       .onGet(() =>
-        this.ng
-          .status()
-          .then((status) =>
-            Math.floor(status.DownloadRate / this.config.rateMultiplier)
-          )
+        this.ng.status().then((status) => {
+          return Math.floor(
+            status.DownloadLimit / (1024 * this.config.rateMultiplier)
+          );
+        })
       );
 
     // Scan
