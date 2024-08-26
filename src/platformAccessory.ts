@@ -36,10 +36,13 @@ export class NZBGetPlatformAccessory {
 
     // Download
 
-    const Download = new this.platform.api.hap.Service.Switch(
-      "Download",
-      "download"
-    );
+    const Download =
+      this.accessory.getService("Download") ||
+      this.accessory.addService(
+        this.platform.Service.Switch,
+        "Download",
+        "download"
+      );
     Download.setCharacteristic(this.platform.Characteristic.Name, "Download");
     Download.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
@@ -58,10 +61,14 @@ export class NZBGetPlatformAccessory {
 
     // Post Processing
 
-    const PostProcessing = new this.platform.api.hap.Service.Switch(
-      "Post Processing",
-      "post_processing"
-    );
+    const PostProcessing =
+      this.accessory.getService("Post Processing") ||
+      this.accessory.addService(
+        this.platform.Service.Switch,
+        "Post Processing",
+        "post_processing"
+      );
+
     PostProcessing.setCharacteristic(
       this.platform.Characteristic.Name,
       "Post Processing"
@@ -80,10 +87,13 @@ export class NZBGetPlatformAccessory {
     this.accessory.addService(PostProcessing);
 
     // Download Rate
-    const DownloadRate = new this.platform.api.hap.Service.Lightbulb(
-      "Download Rate",
-      "download_rate"
-    );
+    const DownloadRate =
+      this.accessory.getService("Download Rate") ||
+      this.accessory.addService(
+        this.platform.Service.Lightbulb,
+        "Download Rate",
+        "download_rate"
+      );
     DownloadRate.setCharacteristic(
       this.platform.Characteristic.Name,
       "Download Rate"
@@ -110,7 +120,9 @@ export class NZBGetPlatformAccessory {
     this.accessory.addService(DownloadRate);
 
     // Scan
-    const Scan = new this.platform.api.hap.Service.Switch("Scan", "scan");
+    const Scan =
+      this.accessory.getService("Scan") ||
+      this.accessory.addService(this.platform.Service.Switch, "Scan", "scan");
     Scan.setCharacteristic(this.platform.Characteristic.Name, "Scan");
     Scan.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
