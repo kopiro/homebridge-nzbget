@@ -117,7 +117,7 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadRate === 0 ? false : true));
       });
-    DownloadRate.getCharacteristic(this.platform.Characteristic.CurrentFanState)
+    DownloadRate.getCharacteristic(this.platform.Characteristic.RotationSpeed)
       .onSet((value: CharacteristicValue) => {
         if (typeof value !== "number") throw new Error();
         this.ng.rate(Math.floor(value * this.config.rateMultiplier));
