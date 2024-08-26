@@ -44,6 +44,10 @@ export class NZBGetPlatformAccessory {
         "download"
       );
     Download.setCharacteristic(this.platform.Characteristic.Name, "Download");
+    Download.setCharacteristic(
+      this.platform.Characteristic.ConfiguredName,
+      "Download"
+    );
     Download.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
@@ -72,6 +76,11 @@ export class NZBGetPlatformAccessory {
       this.platform.Characteristic.Name,
       "Post Processing"
     );
+    PostProcessing.setCharacteristic(
+      this.platform.Characteristic.ConfiguredName,
+      "Post Processing"
+    );
+
     PostProcessing.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
@@ -94,6 +103,10 @@ export class NZBGetPlatformAccessory {
       );
     DownloadRate.setCharacteristic(
       this.platform.Characteristic.Name,
+      "Download Rate"
+    );
+    DownloadRate.setCharacteristic(
+      this.platform.Characteristic.ConfiguredName,
       "Download Rate"
     );
     DownloadRate.getCharacteristic(this.platform.Characteristic.On)
@@ -121,6 +134,7 @@ export class NZBGetPlatformAccessory {
       this.accessory.getService("Scan") ||
       this.accessory.addService(this.platform.Service.Switch, "Scan", "scan");
     Scan.setCharacteristic(this.platform.Characteristic.Name, "Scan");
+    Scan.setCharacteristic(this.platform.Characteristic.ConfiguredName, "Scan");
     Scan.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         if (value) {
