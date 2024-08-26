@@ -96,7 +96,7 @@ export class NZBGetPlatformAccessory {
     const DownloadRate =
       this.accessory.getService("Download Rate") ||
       this.accessory.addService(
-        this.platform.Service.Lightbulb,
+        this.platform.Service.Fan,
         "Download Rate",
         "download_rate"
       );
@@ -117,7 +117,7 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadRate === 0 ? false : true));
       });
-    DownloadRate.getCharacteristic(this.platform.Characteristic.Brightness)
+    DownloadRate.getCharacteristic(this.platform.Characteristic.CurrentFanState)
       .onSet((value: CharacteristicValue) => {
         if (typeof value !== "number") throw new Error();
         this.ng.rate(Math.floor(value * this.config.rateMultiplier));
