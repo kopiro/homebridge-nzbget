@@ -26,6 +26,10 @@ export class NZBGetPlatformAccessory {
 
     this.ng = new Client(url);
 
+    this.ng.status().then((s) => {
+      console.log(s);
+    });
+
     // set accessory information
     this.accessory
       .getService(this.platform.Service.AccessoryInformation)!
@@ -117,7 +121,7 @@ export class NZBGetPlatformAccessory {
       .onGet(() => {
         return this.ng
           .status()
-          .then((status) => (status.DownloadRate === 0 ? false : true));
+          .then((status) => (status.DownloadLimit === 0 ? false : true));
       });
     DownloadRate.getCharacteristic(this.platform.Characteristic.RotationSpeed)
       .onSet((value: CharacteristicValue) => {
