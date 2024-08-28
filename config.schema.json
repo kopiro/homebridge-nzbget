@@ -50,12 +50,12 @@
             "description": "Set the instance password"
           },
           "rateMultiplier": {
-            "title": "Download Rate Multiplier",
+            "title": "Max Speed Limit in Mbps",
             "type": "number",
             "required": true,
             "minimum": 0,
             "default": 1000,
-            "description": "Set the rate multiplier for the DownloadRate. Set it to the max KBPS of your internet connection"
+            "description": "Set the max speed limit"
           }  
         }
       }

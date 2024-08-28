@@ -99,22 +99,22 @@ export class NZBGetPlatformAccessory {
       );
 
     // Download Rate
-    const DownloadRate =
-      this.accessory.getService("Download Rate") ||
+    const SpeedLimit =
+      this.accessory.getService("Speed Limit") ||
       this.accessory.addService(
         this.platform.Service.Fan,
-        "Download Rate",
-        "download_rate"
+        "Speed Limit",
+        "speed_limit"
       );
-    DownloadRate.setCharacteristic(
+    SpeedLimit.setCharacteristic(
       this.platform.Characteristic.Name,
-      "Download Rate"
+      "Speed Limit"
     );
-    DownloadRate.setCharacteristic(
+    SpeedLimit.setCharacteristic(
       this.platform.Characteristic.ConfiguredName,
-      "Download Rate"
+      "Speed Limit"
     );
-    DownloadRate.getCharacteristic(this.platform.Characteristic.On)
+    SpeedLimit.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
         this.ng.rate(value ? 100 : 0);
       })
@@ -123,9 +123,9 @@ export class NZBGetPlatformAccessory {
           .status()
           .then((status) => (status.DownloadLimit === 0 ? false : true));
       });
-    DownloadRate.getCharacteristic(this.platform.Characteristic.RotationSpeed)
+    SpeedLimit.getCharacteristic(this.platform.Characteristic.RotationSpeed)
       .onSet((value: CharacteristicValue) => {
-        this.platform.log.debug("Setting Download Rate to", value);
+        this.platform.log.debug("Setting Speed Limit to", value);
         if (typeof value !== "number") throw new Error();
         this.ng.rate(Math.floor(value * this.config.rateMultiplier));
       })
