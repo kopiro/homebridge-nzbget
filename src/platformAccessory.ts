@@ -13,7 +13,7 @@ export class NZBGetPlatformAccessory {
   constructor(
     private readonly platform: NZBGetPlatform,
     private readonly accessory: PlatformAccessory,
-    private readonly _config: NZBConfig
+    _config: NZBConfig
   ) {
     this.config = {
       rateMultiplier: 1_000,
@@ -49,6 +49,7 @@ export class NZBGetPlatformAccessory {
     );
     Download.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
+        this.platform.log.debug("Setting Download to", value);
         if (value) {
           this.ng.resumedownload();
         } else {
@@ -82,6 +83,7 @@ export class NZBGetPlatformAccessory {
 
     PostProcessing.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
+        this.platform.log.debug("Setting Post Processing to", value);
         if (value) {
           this.ng.resumepost();
         } else {
@@ -119,6 +121,7 @@ export class NZBGetPlatformAccessory {
       });
     DownloadRate.getCharacteristic(this.platform.Characteristic.RotationSpeed)
       .onSet((value: CharacteristicValue) => {
+        this.platform.log.debug("Setting Download Rate to", value);
         if (typeof value !== "number") throw new Error();
         this.ng.rate(Math.floor(value * this.config.rateMultiplier));
       })
@@ -138,6 +141,7 @@ export class NZBGetPlatformAccessory {
     Scan.setCharacteristic(this.platform.Characteristic.ConfiguredName, "Scan");
     Scan.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
+        this.platform.log.debug("Setting Scan to", value);
         if (value) {
           this.ng.resumescan();
         } else {
