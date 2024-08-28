@@ -26,9 +26,9 @@ export class NZBGetPlatformAccessory {
 
     this.ng = new Client(url);
 
-    this.ng.status().then((s) => {
-      console.log(s);
-    });
+    // this.ng.status().then((s) => {
+    //   console.log(s);
+    // });
 
     // set accessory information
     this.accessory
