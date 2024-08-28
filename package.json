@@ -2,7 +2,7 @@
   "name": "homebridge-nzbget",
   "displayName": "Homebridge NZBGet",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple NZBGET interface for Homebridge",
   "author": {
     "name": "Flavio De Stefano",
