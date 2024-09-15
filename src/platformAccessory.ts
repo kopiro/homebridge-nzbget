@@ -116,6 +116,7 @@ export class NZBGetPlatformAccessory {
     );
     SpeedLimit.getCharacteristic(this.platform.Characteristic.On)
       .onSet((value: CharacteristicValue) => {
+        this.platform.log.debug("Setting Speed Limit (on/off) to", value);
         this.ng.rate(value ? 100 : 0);
       })
       .onGet(() => {
